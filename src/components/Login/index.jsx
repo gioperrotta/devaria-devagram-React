@@ -14,7 +14,7 @@ import imagemLogo from '../../../public/images/Logo.svg'
 
 const usuarioService = new UsuarioService();
 
-export function Login() {
+export function Login({ aposAutenticacao }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [estaSubmetendo, setEstaSubmetendo] = useState(false);
@@ -34,6 +34,9 @@ export function Login() {
         email,
         senha
       })
+      if (aposAutenticacao) {
+        aposAutenticacao();
+      }
       // TODO redirecioonar o usuario para home
     } catch (error) {
       alert(

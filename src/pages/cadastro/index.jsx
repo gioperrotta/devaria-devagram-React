@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import { UploadImage } from "@/components/UploadImage";
 import { InputPublico } from "@/components/InputPublico";
@@ -8,7 +9,6 @@ import { Button } from "@/components/Button";
 import { validarNome, validarEmail, validarSenha, validarConfirmacaoSenha } from "@/utils/validadores";
 
 import { UsuarioService } from "@/services/UsuarioService";
-
 
 import imagemLogo from '../../../public/images/Logo.svg'
 import imagemEnvelope from '../../../public/images/Envelope.svg'
@@ -26,6 +26,7 @@ export default function Cadastro() {
   const [confirmacaoSenha, setConfirmacaoSenha] = useState('');
   const [estaSubmetendo, setEstaSubmetendo] = useState(false);
 
+  const router = useRouter()
 
   const validarFormulario = () => {
     return (
@@ -50,10 +51,14 @@ export default function Cadastro() {
       if (imagem?.arquivo) {
         corpoReqCadastro.append("file", imagem.arquivo);
       }
-
+   
       await usuarioService.cadastro(corpoReqCadastro);
-      alert('Sucesso!')
+      await usuarioService.login({
+        email,
+        senha
+      });      
       // TODO autenticar diretamente após o cadastro
+      router.push('/');
 
     } catch (error) {
       alert(
