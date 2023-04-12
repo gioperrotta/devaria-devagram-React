@@ -1,1 +1,3 @@
-console.log(0 || false || '' || 'vazio')
+console.log('0' != 0)
+console.log('0' !== 0)
+console.log('0' != null)

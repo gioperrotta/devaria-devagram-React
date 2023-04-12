@@ -14,7 +14,7 @@ import imagemLogo from '../../../public/images/Logo.svg'
 
 const usuarioService = new UsuarioService();
 
-export function Login({ aposAutenticacao }) {
+export default function Login({ aposAutenticacao }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [estaSubmetendo, setEstaSubmetendo] = useState(false);

@@ -64,9 +64,30 @@ input {
   margin-bottom: 15px;
 }
 
+.barraNavegacao {
+  ul {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px 0;
+
+    li {
+      list-style: none;
+      cursor: pointer;
+    }
+  }
+}
+
+strong {
+  font-family: $fontBold;
+}
+
 @import '../../public/fonts/fonts.scss';
 @import '../components/Button/button.scss';
 @import '../components/InputPublico/inputPublico.scss';
 @import '../pages/cadastro/cadastro.scss';
+@import '../components/layout/header.scss';
+@import '../components/layout/footer.scss';
 
 @import './paginaPublica.scss';

@@ -22,4 +22,17 @@ export class UsuarioService extends HttpService {
     return localStorage.getItem('token') !== null
   }
 
+  async pesquisar(termoDaPesquisa) {
+    return this.get(`pesquisa?filo=${termoDaPesquisa}`)
+  }
+
+  obterInformacoesUsuarioLogado() {
+    return {
+      id: localStorage.getItem('id'),
+      nome: localStorage.getItem('nome'),
+      email: localStorage.getItem('email'),
+      avatar: localStorage.getItem('avatar'),
+    }
+  }
+
 }
