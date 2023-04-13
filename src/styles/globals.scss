@@ -83,11 +83,26 @@ strong {
   font-family: $fontBold;
 }
 
+.largura30pctDesktop {
+  @media screen and (min-width: $desktopBreakpoint) { 
+    width: 30%;
+    margin: auto;
+  }
+}
+
+body {
+  @media screen and (min-width: $desktopBreakpoint) {
+    background-color: $cinza5;
+    background-image: url('/images/imagemFundoDesktop.svg');
+  }
+}
+
 @import '../../public/fonts/fonts.scss';
 @import '../components/Button/button.scss';
 @import '../components/InputPublico/inputPublico.scss';
 @import '../pages/cadastro/cadastro.scss';
 @import '../components/layout/header.scss';
 @import '../components/layout/footer.scss';
+@import '../components/Feed/feed.scss';
 
 @import './paginaPublica.scss';

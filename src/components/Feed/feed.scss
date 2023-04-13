@@ -1,0 +1,102 @@
+.feedContainer {
+  padding-bottom: 60px;
+  background-color: $branco;
+
+  .postagem {
+    margin-top: 16px;
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      margin-right: 8px;
+    }
+
+    .headerPostagem {
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      margin-bottom: 8px;
+
+      strong {
+        font-size: 12px;
+        color: $cinza4;
+      }
+    }
+
+    .fotoPostagem {
+      img {
+        width: 100%;
+        height: auto;
+        max-height: 360px;
+        object-fit: cover;
+      }
+    }
+
+    .footerPostagem {
+      padding: 5px 16px;
+
+      p.descricao {
+        font-size: 12px;
+        margin: 0 0 4px;
+        color: $cinza4;
+
+        strong.nomeUsuario {
+          font-size: 12px;
+          margin-right: 4px;
+          color: $cinza4;
+        }
+        
+        .exibirDescricaoCompleta{
+          font-size: 12px;
+          color: $corPrimaria3;
+          margin-left: 4px;
+          cursor: pointer;
+        }
+
+      }
+
+      .acoesPostagem {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 6px;
+
+        >span {
+          font-family: $fontLight;
+          font-size: 10px;
+          color: $cinza4;
+
+
+          strong {
+            font-size: 10px;
+            color: $cinza4;
+          }
+        }
+      }
+    }
+
+    .containerFazerComentario {
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      margin-bottom: 16px;
+      
+      textarea {
+        resize: none;
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 12px;
+        color: $cinza2;
+        max-width: 100%;
+      }
+    }
+
+  }
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    .feedContainer {
+      padding-top: 8px;
+    }
+  }
+}

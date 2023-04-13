@@ -23,7 +23,7 @@ export class UsuarioService extends HttpService {
   }
 
   async pesquisar(termoDaPesquisa) {
-    return this.get(`pesquisa?filo=${termoDaPesquisa}`)
+    return this.get(`pesquisa?filtro=${termoDaPesquisa}`)
   }
 
   obterInformacoesUsuarioLogado() {
