@@ -4,6 +4,7 @@ import HeaderApp  from "../components/layout/HeaderApp";
 import FooterApp from "@/components/layout/FooterApp";
 
 import { UsuarioService } from "@/services/UsuarioService";
+import Loader from "@/components/Loader";
 
 export default function comAutorizacao(Componente) {
   const usuarioService = new UsuarioService();
@@ -21,6 +22,7 @@ export default function comAutorizacao(Componente) {
       return (
         <>
           <HeaderApp usuarioLogado={usuarioLogado}/>
+          <Loader/>
           <Componente usuarioLogado={usuarioLogado} {...props} />
           <FooterApp usuarioLogado={usuarioLogado} />
         </>

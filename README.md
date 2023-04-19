@@ -1,6 +1,6 @@
 # Devagram
 
-Projeto desenvolvimento para apresentação do react.js e next na formação Devaria 2022.
+Projeto desenvolvimento para apresentação do react.js e next na formação Devaria 2023, este projeto em execução deve reproduzir uma versão reduzida do instagram.
 
 ### Tenologias Utilizadas
 

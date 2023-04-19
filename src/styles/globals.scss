@@ -17,7 +17,7 @@ html, body, #__next {
 }
 
 .oculto {
-  display: none;
+  display: none !important;
 }
 
 input {
@@ -110,14 +110,18 @@ body {
 }
 
 @import '../../public/fonts/fonts.scss';
+
 @import '../components/Button/button.scss';
 @import '../components/InputPublico/inputPublico.scss';
-@import '../pages/cadastro/cadastro.scss';
 @import '../components/layout/headerApp.scss';
 @import '../components/layout/footerApp.scss';
 @import '../components/Feed/feed.scss';
 @import '../components/HeaderComAcoes/headerComAcoes.scss';
+@import '../components/Loader/loader.scss';
+
+
 @import '../pages/perfil/perfil.scss';
 @import '../pages/publicacao/publicacao.scss';
+@import '../pages/cadastro/cadastro.scss';
 
 @import './paginaPublica.scss';
