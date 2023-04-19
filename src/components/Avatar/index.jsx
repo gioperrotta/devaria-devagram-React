@@ -7,9 +7,7 @@ export function Avatar({src}) {
     } 
     return avatarImgDefault.src;
   }
-
-  console.log(src)
-
+  
   return (
     <img src={getAvatar()} alt='Avatar' className='avatar'/>
   )

@@ -1,9 +1,9 @@
 import { HttpService } from "./HttpService";
 
 export class UsuarioService extends HttpService {
+
   async login(credenciais) {
     const { data } = await this.post('/login', credenciais)
-    console.log(data);
     localStorage.setItem("nome", data.nome);
     localStorage.setItem("email", data.email);
     localStorage.setItem("token", data.token);
@@ -14,8 +14,20 @@ export class UsuarioService extends HttpService {
     }
   }
 
+  async logout() {
+    localStorage.removeItem("nome");
+    localStorage.removeItem("email")
+    localStorage.removeItem("token")
+    localStorage.removeItem("id");
+    localStorage.removeItem("avata");
+  }
+
   async cadastro(dados) {
     return this.post('/usercreate', dados)
+  }
+
+  async atualizarPerfil (dados) {
+    return this.put('/user', dados)
   }
 
   estaAutenticado() {
@@ -24,6 +36,14 @@ export class UsuarioService extends HttpService {
 
   async pesquisar(termoDaPesquisa) {
     return this.get(`pesquisa?filtro=${termoDaPesquisa}`)
+  }
+
+  async obterPerfil(idUsuario) {
+    return this.get(`pesquisa?id=${idUsuario}`)
+  }
+
+  async alternarSeguir(idUsuario) {
+    return this.put(`/seguir?id=${idUsuario}`)
   }
 
   obterInformacoesUsuarioLogado() {

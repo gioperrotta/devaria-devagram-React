@@ -1,6 +1,6 @@
 import { Navegacao } from "./Navegacao";
 
-export function Footer () {
+export default function FooterApp () {
   return (
     <footer className="footer mobile">
       <Navegacao/>

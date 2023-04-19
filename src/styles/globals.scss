@@ -90,6 +90,18 @@ strong {
   }
 }
 
+.linhaDivisoria {
+  margin: 0;
+  border: none;
+  background-color: $cinza1;
+  height: 1px;
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    margin: 0 auto;
+    width: 95%;
+  }
+}
+
 body {
   @media screen and (min-width: $desktopBreakpoint) {
     background-color: $cinza5;
@@ -101,8 +113,11 @@ body {
 @import '../components/Button/button.scss';
 @import '../components/InputPublico/inputPublico.scss';
 @import '../pages/cadastro/cadastro.scss';
-@import '../components/layout/header.scss';
-@import '../components/layout/footer.scss';
+@import '../components/layout/headerApp.scss';
+@import '../components/layout/footerApp.scss';
 @import '../components/Feed/feed.scss';
+@import '../components/HeaderComAcoes/headerComAcoes.scss';
+@import '../pages/perfil/perfil.scss';
+@import '../pages/publicacao/publicacao.scss';
 
 @import './paginaPublica.scss';

@@ -1,0 +1,124 @@
+.paginaPublicacao {
+  background-color: $branco;
+
+  .cabecalhoComAcoes {
+    &.segundaEtapa {
+      >span {
+        cursor: pointer;
+      }
+
+      h3 {
+        padding-left: 17%;
+      }
+    }
+  }
+
+  .conteudoPaginaPublicacao {
+    .primeiraEtapa {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+
+      .uploadImageContainer {
+        text-align: center;
+
+        .imagePreviewContainer {
+          margin: 30px auto;
+
+          img {
+            object-fit: cover;
+          }
+
+          .previewImagemPublicacao {
+            height: 150px;
+            width: 150px;
+          }
+
+          .previewImagemSelecionada {
+            height: 250px;
+            width: 250px;
+          }
+        }
+
+
+      }
+
+      .btn {
+        background-color: $corPrimaria3;
+        color: $branco;
+        width: 60%;
+        margin: auto;
+        padding: 12px;
+
+        &:hover {
+          border: none;
+          opacity: 0.8;
+        }
+      }
+    }
+
+    .segundaEtapa {
+      display: flex;
+      gap: 12px;
+      padding: 16px;
+
+      .uploadImageContainer {
+        .imagePreviewContainer {
+          width: 120px;
+          height: 120px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+
+      textarea {
+        flex: 1;
+        border: none;
+        outline: none;
+        resize: none;
+        font-size: 12px;
+        font-family: $fontLight;
+        color: $cinza2;
+      }
+
+    }
+  }
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .conteudoPaginaPublicacao {
+      .primeiraEtapa {
+        cursor: pointer;
+
+        .uploadImageContainer {
+          .imagePreviewContainer {
+            margin-bottom: 20px;
+          }
+        }
+
+        .textoDragAndDrop {
+          color: $cinza4;
+          font-size: 16px;
+          margin-bottom: 30px;
+        }
+      }
+
+      .segundaEtapa {
+        .uploadImageContainer {
+          .imagePreviewContainer {
+            width: 180px;
+            height: 180px;
+          }
+        }
+      }
+    }
+  }
+}

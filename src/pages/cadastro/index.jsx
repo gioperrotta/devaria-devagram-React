@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { UploadImage } from "@/components/UploadImage";
+import UploadImage from "@/components/UploadImage";
 import { InputPublico } from "@/components/InputPublico";
 import { Button } from "@/components/Button";
 import { validarNome, validarEmail, validarSenha, validarConfirmacaoSenha } from "@/utils/validadores";

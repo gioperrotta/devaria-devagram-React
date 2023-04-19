@@ -8,18 +8,24 @@ import imgCurtir from '../../../public/images/curtir.svg';
 import imgCurtido from '../../../public/images/curtido.svg';
 import imgComentarioAtivo from '../../../public/images/comentarioAtivo.svg';
 import imgComentarioCinza from '../../../public/images/comentarioCinza.svg';
-import { FazerComentario } from "./FazerComentario";
+import FazerComentario  from "./FazerComentario";
+import { FeedService } from "@/services/FeedService";
 
 const tamanhoLimiteDescricao = 90;
+const feedService = new FeedService();
 
 export default function Postagem({
+  id,
   usuario,
   fotoDoPost,
   descricao,
   comentarios,
-  usuarioLogado
+  usuarioLogado,
+  curtidas
 }) {
-  const[deveExibirSecaoParaComentar, setDeveExibirSecaoParaComentar] = useState(false);
+  const [curtidasPost, setCurtidasPost] = useState(curtidas);
+  const [comentariosPost, setComentariosPost] = useState(comentarios);
+  const [deveExibirSecaoParaComentar, setDeveExibirSecaoParaComentar] = useState(false);
   const [tamanhoAtualDescricao, setTamanhoAtualDescricao] = useState(tamanhoLimiteDescricao);
 
   const exibirDescricaoCompleta = () => {
@@ -38,6 +44,56 @@ export default function Postagem({
     return mensagem
   }
 
+  const obterImagemComentario = () => {
+    return deveExibirSecaoParaComentar
+      ? imgComentarioAtivo
+      : imgComentarioCinza
+  }
+
+  const comentar = async (comentario) => {
+    try {
+      await feedService.adicionarComentario(id, comentario);
+      setDeveExibirSecaoParaComentar(false);
+      setComentariosPost([
+        ...comentariosPost,
+        {
+          nome: usuarioLogado.nome,
+          mensagem: comentario
+        }
+      ])
+    } catch (error) {
+      alert('Erro ao fazer comentario! ' + error?.response?.data?.error)
+    }
+  }
+
+  const estaCurtido = () => {
+    if (curtidasPost.length > 0) {
+      return curtidasPost.includes(usuarioLogado.id)
+    } 
+    return false    
+  }
+
+  const obterImgCurtir = () => {
+    return estaCurtido() 
+      ? imgCurtido
+      : imgCurtir
+  }
+
+  const alterarCurtida = async () => {
+    try {
+      await feedService.alterarCurtida(id);
+      if (estaCurtido()) {
+        setCurtidasPost(
+          curtidasPost.filter(idUsuario => idUsuario !== usuarioLogado.id)
+        )
+      } else {
+        setCurtidasPost(...curtidasPost, Array(usuarioLogado.id) )
+      }
+    } catch (error) {
+      alert('Erro ao alterar curtida! ' + error?.response?.data?.error)
+    }
+  }
+
   return (
     <div className="postagem">
       <Link href={`/perfil/$usuario.id`} >
@@ -52,22 +108,21 @@ export default function Postagem({
       <div className="footerPostagem">
         <div className="acoesPostagem">
           <Image
-            src={imgCurtir}
+            src={obterImgCurtir()}
             alt='icone Curtir'
             width={20}
             height={20}
-            onClick={() => console.log('curtir')}
+            onClick={alterarCurtida}
           />
-
           <Image
-            src={imgComentarioCinza}
+            src={obterImagemComentario()}
             alt='icone Comentar'
             width={20}
             height={20}
             onClick={() => setDeveExibirSecaoParaComentar(!deveExibirSecaoParaComentar)}
           />
           <span className="quantidadeCurtidas">
-            Curtido por <strong>32 pessoas</strong>
+            Curtido por <strong>{curtidasPost.length} pessoas</strong>
           </span>
         </div>
         <div className="descricaoPostagem">
@@ -75,17 +130,15 @@ export default function Postagem({
             <strong className="nomeUsuario">{usuario.nome}</strong>
             {obterDescricao()}
             {descricaoMaiorQueLimite() && (
-              <spam
-                className="exibirDescricaoCompleta"
-                onClick={exibirDescricaoCompleta}
-              >
+              <span className="exibirDescricaoCompleta"
+                onClick={exibirDescricaoCompleta}>
                 mais
-              </spam>
+              </span>
             )}
           </p>
         </div>
         <div className="comentariosPostagem">
-          {comentarios.map((comentario, i) => (
+          {comentariosPost.map((comentario, i) => (
             <div key={i} className="comentario">
               <p className="descricao">
                 <strong className="nomeUsuario">{comentario.nome}</strong>
@@ -97,6 +150,7 @@ export default function Postagem({
       </div>
       {deveExibirSecaoParaComentar &&
         <FazerComentario
+          comentar={comentar}
           usuarioLogado={usuarioLogado}
         />
       }
