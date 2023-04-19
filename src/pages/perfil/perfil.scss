@@ -12,6 +12,11 @@
         width: 80px;
         height: 80px;
         margin-right: 24px;
+
+        border: solid 3px transparent;
+        background-image: linear-gradient(to bottom, white, white), radial-gradient(circle at top center, $corPrimaria1, $corPrimaria3);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
       }
 
       .informacoesPerfil {
@@ -80,7 +85,7 @@
       .avatar {
         width: 80px;
         height: 80px;
-        margin-bottom: 2px;
+        margin-bottom: 2px;        
       }
 
       span {
